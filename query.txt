@@ -1,0 +1,42 @@
+In [1]: from main.models import *
+
+1. Получить всех игроков Dota
+In [2]: DotaPlayer.objects.all()
+Out[2]: <QuerySet [<DotaPlayer: ZNation Dendi>, <DotaPlayer: Team Spirit Stray228>]>
+
+2. Получить игроков Dota с ролью Mid
+In [3]: DotaPlayer.objects.filter(role='2')
+Out[3]: <QuerySet [<DotaPlayer: ZNation Dendi>]>
+
+3. Получить команду Dota с названием, содержащим "Team Spirit"
+In [4]: DotaTeam.objects.get(team_name__icontains='Team Spirit')
+Out[4]: <DotaTeam: Team Spirit>
+
+4. Получить все команды Dota, отсортированные по заработку
+In [5]: DotaTeam.objects.order_by('total_earning')
+Out[5]: <QuerySet [<DotaTeam: ZNation>, <DotaTeam: Virtus Pro>, <DotaTeam: Team Spirit>]>
+
+5. Создать новую команду Dota с названием "Gaben daun", заработком 50000000 и расположением в России
+In [6]: DotaTeam.objects.create(team_name='Gaben daun', total_earning=50000000, team_location='RU')
+Out[6]: <DotaTeam: Gaben daun>
+
+6. Получить первую запись модели DotaPlayerQuotes:
+In [7]: DotaPlayerQuotes.objects.all()[:1]
+Out[7]: <QuerySet [<DotaPlayerQuotes: Хрю-Хрю>]>
+
+7. Получить игроков Dota, чья национальность - UA, в модели DotaPlayerQuotes с первичным ключом 1
+In [8]: n = DotaPlayerQuotes.objects.get(pk=1)
+In [8]: n.players.filter(nationality='UA')
+Out[8]: <QuerySet [<DotaPlayer: ZNation Dendi>]>
+
+8. Получить всех игроков, которые играют за команду с названием "Virtus.pro":
+In [9]: DotaPlayer.objects.filter(team='Virtus.pro')
+Out[9]: <QuerySet [<DotaPlayer: Virtus.pro yxa6e38x>]>
+
+9. Получить все команды, заработавшие более $10:
+In [10]: DotaTeam.objects.filter(total_earning__gt=10)
+Out[10]: <QuerySet [<DotaTeam: Team Spirit>, <DotaTeam: Virtus.pro>, <DotaTeam: Gaben daun>]>
+
+10. Получить все команды, за которые играют игроки с ролью "Mid":
+In [11]: DotaTeam.objects.filter(dotaplayer__role='2')
+Out[11]: <QuerySet [<DotaTeam: ZNation>]>
