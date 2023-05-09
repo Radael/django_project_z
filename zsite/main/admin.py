@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import DotaPlayers, DotaTeam
 
-# Register your models here.
+admin.site.register(DotaPlayers)
+admin.site.register(DotaTeam)
