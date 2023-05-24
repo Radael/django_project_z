@@ -9,3 +9,8 @@
 -  forms for editing existing information.
 -  to delete all unwanted data.
 - Additional entertaining elements for some fun moments (goofy stuff).
+
+## Planned
+- Implement a toggle switch to easily switch between dark and light themes.
+- Introduce a mini-game component.
+- Include additional features or functionalities.
