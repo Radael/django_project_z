@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+{% block title %} {{ title }} {% endblock title %}
+
+{% block body %}
+<div class="container mt-4">
+
+    <form action="{% url 'delete_player' dotaplayer.slug %}" method="post">
+      {% csrf_token %}
+
+      <p class="fs-4 fw-light">Are you sure you want to delete <b class="fw-medium">"{{ dotaplayer.name }}"</b>?</p>
+        <input type=button value="Назад" class="btn btn-primary" onClick="javascript:history.go(-1);">
+      <button class="btn btn-danger" type="submit">
+        Да, удалить
+      </button>
+    </form>
+
+  </div>
+{% endblock body %}

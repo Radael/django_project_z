@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+{% block title %} {{ players.nickname }} {% endblock %}
+{% block body %}
+    <input type=button value="Назад" onClick="javascript:history.go(-1);">
+    <h2>{{ players.nickname }}</h2>
+    <p>Team: <a href="{{ players.team.get_absolute_url }}">{{ players.team.team_name }}</a></p>
+    <p>Nationality: {{ players.nationality }}</p>
+    <p>Born: {{ players.born }}</p>
+    <p>Role: {{ players.get_role_display }}</p>
+    <p>MMR: {{ players.mmr }}</p>
+    <h1>{{ players.name }}</h1><a class="btn btn-danger" href="{% url 'delete_player' players.slug %}" role="button">Удалить игрока?</a>
+{% endblock body %}

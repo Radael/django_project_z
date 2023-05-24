@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+{% block title %} {{ title }} {% endblock %}
+{% block body %}
+    <input type=button value="Назад" onClick="javascript:history.go(-1);">
+    <div style="margin-top: 2rem"><a href="{% url add %}" class="btn btn-primary">Добавить</a></div>
+    <div class="row row-cols-{{ players|length }} row-cols-md-5">
+    {% for p in players %}
+        <div class="col mb-3">
+        <div class="card rounded-top h-100 d-flex">
+            <img src="{{ p.player_photo.url }}" class="card-img-top h-50 rounded-top border" alt="">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-info">{{ p.nickname }}</h5>
+                <p class="card-text">{{ p.name }} {{ p.surname }}</p>
+                <p class="card-text"><b>Role</b>: {{ p.get_role_display }}</p>
+                <p class="card-text"><b>Born</b>: {{ p.born }}</p>
+                <p class="card-text"><b>MMR</b>: {{ p.mmr }}</p>
+                <p class="card-text"><b>Team</b>: {{ p.team.team_name }}</p>
+                <p class="card-text"><b>Nationality</b>: {{ p.nationality.name }}</p>
+                {% if p.nationality == 'UA' %}
+                    <p class="card-text"><b>Хрю-Хрю</b></p>
+                {% endif %}
+                <div class="d-grid gap-2 d-md-block mt-auto">
+                <a href="{{ p.get_absolute_url }}" class="btn btn-secondary ">Перейти на страницу игрока</a>
+                    <a href="{% url 'update_player' p.slug %}" class="btn btn-info">Изменить</a>
+                    </div>
+
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock body %}

@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+{% block title %} {{ title }} {% endblock title %}
+
+{% block body %}
+<div class="container mt-4">
+
+    <form action="{% url 'delete_tournament' dotatournament.slug %}" method="post">
+      {% csrf_token %}
+
+      <p class="fs-4 fw-light">Are you sure you want to delete <b class="fw-medium">"{{ dotatournament.name }}"</b>?</p>
+        <a class="btn btn-primary" href="#" role="button">Ссылка</a>
+      <button class="btn btn-danger" type="submit">
+        Да, удалить
+      </button>
+    </form>
+
+  </div>
+{% endblock body %}
