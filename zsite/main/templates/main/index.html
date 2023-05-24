@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% block title %} {{ title }} {% endblock %}
+{% block body %}
+    <form role="search" method="get" class="form-select form-select-lg mb-3" >
+    {{ form }}
+    <button type="submit" class="btn border m-2">Search</button>
+    </form>
+    <div class="btn-group mb-1 ml-2" role="group" aria-label="Простой пример">
+  <a href="{% url add %}" class="btn btn-primary">Добавить</a>
+
+</div>
+    <div class="row row-cols-{{ tourns|length }} row-cols-md-5">
+    {% for t in tourns %}
+        <div class="col mb-3">
+        <div class="card  mb-3 rounded-top h-100 w-70">
+            <img src="{{ t.photo.url }}" class="card-img-top h-100 rounded-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title">{{ t.name }}</h5>
+                <p class="card-text">{{ t.event_date }} - {{ t.end_event_date }}</p>
+                <p class="card-text">Patch: {{ t.patch }}</p>
+                <p class="card-text">Prize pool: {{ t.prize_pool }}$</p>
+                <p class="card-text">Location: {{ t.location.name }}</p>
+                <div class="d-grid gap-2 d-md-block">
+                <a href="{{ t.get_absolute_url }}" class="btn btn-secondary">Перейти на страницу турнира</a>
+                    <a href="{% url 'update_tournament' t.slug %}" class="btn btn-info">Изменить</a>
+                    </div>
+
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock body %}

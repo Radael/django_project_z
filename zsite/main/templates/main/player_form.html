@@ -1,0 +1,56 @@
+{% extends 'main/base.html' %}
+{% load crispy_forms_filters %}
+{% block title %} {% endblock title %}
+{% block body %}
+    <input type=button value="Назад" onClick="javascript:history.go(-1);">
+    <div class="container-lg mt-4">
+<h1>Add player</h1>
+<form class="row g-3" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="col-md-6">
+    {{ form.nickname|as_crispy_field }}
+  </div>
+
+  <div class="col-md-6">
+    {{ form.slug|as_crispy_field }}
+  </div>
+
+  <div class="col-12">
+    {{ form.player_photo|as_crispy_field }}
+  </div>
+
+  <div class="col-12">
+    {{ form.name|as_crispy_field }}
+  </div>
+
+  <div class="col-md-6">
+    {{ form.surname|as_crispy_field }}
+  </div>
+
+  <div class="col-md-6">
+    {{ form.nationality|as_crispy_field }}
+  </div>
+
+  <div class="col-md-6">
+    {{ form.born|as_crispy_field }}
+  </div>
+
+  <div class="col-md-6">
+    {{ form.role|as_crispy_field }}
+  </div>
+
+  <div class="col-md-6">
+    {{ form.mmr|as_crispy_field }}
+  </div>
+
+  <div class="col-md-6">
+    {{ form.team|as_crispy_field }}
+  </div>
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+</div>
+{% endblock body %}

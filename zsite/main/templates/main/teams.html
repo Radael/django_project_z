@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% block title %} {{ title }} {% endblock %}
+{% block body %}
+    <input type=button value="Назад" onClick="javascript:history.go(-1);">
+    <div style="margin-top: 2rem"><a href="{% url add %}" class="btn btn-primary">Добавить</a></div>
+    <div class="row row-cols-{{ teams|length }} row-cols-md-5">
+    {% for t in teams %}
+        <div class="col mb-3">
+        <div class="card rounded-top h-100 d-flex">
+            <img src="{{ t.team_logo.url }}" class="card-img-top h-50 rounded-top border" alt="">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ t.team_name }}</h5>
+                <p class="card-text">Earnings: {{ t.total_earning }}$</p>
+                <p class="card-text">Location: {{ t.team_location }}</p>
+                <h5 class="card-text text-info">Players:</h5>
+                {% for p in t.get_players %}
+                    <h4 class="card-text">{{ p.nickname }}</h4>
+                {% endfor %}
+                <div class="d-grid gap-2 d-md-block mt-auto">
+                <a href="{{ t.get_absolute_url }}" class="btn btn-secondary ">Перейти на страницу команды</a>
+                    <a href="{% url 'update_team' t.slug %}" class="btn btn-info">Изменить</a>
+                    </div>
+
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock body %}

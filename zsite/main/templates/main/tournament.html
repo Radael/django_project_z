@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+{% block title %} {{ tournaments.name }} {% endblock %}
+{% block body %}
+    <input type=button value="Назад" onClick="javascript:history.go(-1);">
+    <div class="container-fluid">
+    <h1>{{ tournaments.name }}</h1><a class="btn btn-danger" href="{% url 'delete_tournament' tournaments.slug %}" role="button">Удалить турнир?</a>
+
+    </div>
+
+{% endblock body %}
