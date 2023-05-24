@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import DotaPlayers, DotaTeam
+from .models import *
 
-admin.site.register(DotaPlayers)
+admin.site.register(DotaPlayer)
 admin.site.register(DotaTeam)
+admin.site.register(DotaTournament)
